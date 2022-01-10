@@ -1,0 +1,15 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "IG.js",
+  "scripts": {
+    "start": "nodemon problemas.js"
+  },
+  "keywords": [],
+  "author": "Gabriel Trinidad Bertres",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
