@@ -1,0 +1,51 @@
+.loader{
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    z-index: 100;
+    clip-path: circle(141.2% at 100% 0);
+}
+
+.loader > div{
+    background: #fff;
+    width: 16px;
+    height: 32px;
+    margin: 10px;
+    animation: loader 1s infinite;
+}
+
+@keyframes loader{
+    50%{
+        height: 64px;
+    }
+}
+
+.loader > div:nth-child(1){
+    background: #ffa01a;
+    animation-delay: -0.40s;
+}
+
+.loader > div:nth-child(2){
+    background: #FED330;
+    animation-delay: -0.20s;
+}
+
+.loader > div:nth-child(3){
+    background: #FFFA65;
+}
+
+
+
+
+
+
+@keyframes hiddenLoader{
+    to{
+        clip-path: circle(0.0% at 100% 0);
+    }
+}

@@ -1,0 +1,59 @@
+:root{
+    --footerTitle: 60px;
+    --iconSize: 100px;
+}
+
+footer{
+    background: #000;
+}
+footer .texto-naranja{
+    text-transform: uppercase;
+    font-size: var(--footerTitle);
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    color: orange;
+    text-align: center;
+}
+
+
+.social-media{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    font-size: 50px;
+}
+
+.social-media a{
+    display: block;
+    display: flex;
+    width: var(--iconSize);
+    height: var(--iconSize);
+    background: #fff;
+    color:#30313A;
+    text-decoration: none;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: var(--iconSize);
+    margin: 0 20px;
+}
+
+.youtube i{color: rgb(255, 0, 0)}
+.instagram i{color: #c13584}
+
+@media screen and (max-width: 670px){
+    :root{
+        --footerTitle: 30px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    :root{
+        --footerTitle: 20px;
+        --iconSize: 50px;
+    }
+    .instagram i,
+    .youtube i{
+        font-size: 30px;
+    }
+}

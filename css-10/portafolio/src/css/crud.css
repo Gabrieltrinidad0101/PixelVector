@@ -1,0 +1,85 @@
+:root{
+    --columns: repeat(4,1fr);
+    --rows: repeat(2,1fr);
+}
+
+.shewCrud{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background: #9a4a4a;
+    z-index: -1;
+    clip-path: polygon(0 0, 100% 100%, 100% 0);
+}
+
+
+/* content */
+.contentSkills{
+    width: var(--contentWidth);
+    height: var(--contentHeight);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+    margin: auto;
+    box-shadow: 0 0 30px -10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.contentSkills > h1{
+    font-size: var(--titleSize);
+    font-family: 'Lobster', cursive;
+}
+
+
+.Skills{
+    width: 100%;
+    height: calc( var(--contentHeight) - 10px - var(--titleSize));
+    display: grid;
+    align-items: center;
+    grid-template-columns: var(--columns);
+    grid-template-rows: var(--rows);
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.Skills .skill{
+    justify-self: center;
+    align-items: center;
+    width: 50px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Skills .skill > img{
+    justify-self: center;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2px;
+}
+
+@media screen and (max-width: 900px){
+    :root{
+        --columns: repeat(3,1fr);
+    }
+}
+
+@media screen and (max-width: 550px){
+    :root{
+        --columns: repeat(2,1fr);
+        --rows: repeat(4,1fr);
+    }
+}
+
+@media screen and (max-width: 400px){
+    .Skills .skill > img{
+        width: 60px;
+        height: 60px;
+    }
+}

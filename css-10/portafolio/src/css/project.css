@@ -1,0 +1,35 @@
+:root{
+    --size-Image-project: 50vh;
+}
+.contentProject::after{
+    width: 100%;
+    height: 100%;
+    content: "";
+    grid-column: var(--grid-column-Imagen);
+    grid-row: var(--grid-row-Imagen);
+    background: url(../img/google_drive.png) no-repeat;
+    background-size: var(--size-Image-project);
+    background-position: center;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    animation: show 2s 3.5s ease-out forwards;
+    border: 50%;
+}
+
+
+@media (max-width: 1110px){
+    :root{
+        --size-Image-project: 40vh;
+    }
+}
+
+@media (max-width: 705px){
+    :root{
+        --size-Image-project: 60%;
+    }
+}
+
+@media (max-width: 463px){
+    :root{
+        --size-Image-project: 30vh;
+    }
+}

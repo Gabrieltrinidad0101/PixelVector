@@ -1,0 +1,78 @@
+.menu{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content:end;
+}
+
+.menuIcon{
+    align-self:center;    
+    display: none;
+    position: absolute;
+    left: 90%;
+}
+
+.menu > nav{
+    height: 50px;
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.menu > nav a{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.menu > nav a::after{
+    display: block;
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #000;
+    transition: width .5s ease;
+}
+
+
+.menu > nav a:hover::after{
+    width: 100%;
+}
+
+
+
+@media screen and (max-width: 900px){
+    .menu > nav{
+        width: 70%;
+    }   
+}
+
+@media screen and (max-width: 517px){
+    .menuIcon{
+        display: inline-block;
+        margin-top: 40px;
+        z-index: 200;
+    }
+
+    .menu > nav{
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        background: #ff4b1f;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #ff9068, #ff4b1f);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #ff9068, #ff4b1f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        z-index: 100;
+        flex-direction: column;
+        clip-path: circle(0.3% at 100% 0);
+        transition: clip-path 1s ease;
+    }
+
+    .menu > nav.activeMenu{
+        clip-path: circle(141.2% at 100% 0);
+    }
+}
