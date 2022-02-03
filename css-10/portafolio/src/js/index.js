@@ -31,10 +31,3 @@ window.addEventListener("DOMContentLoaded",()=>{
 menu.addEventListener("click",_=>{
     containerLinks.classList.toggle("activeMenu")
 })
-
-
-
-
-
-
-
