@@ -14,6 +14,17 @@
     animation: show 2s 3.5s ease-out forwards;
     border: 50%;
 }
+.pathFinding::after{
+    background: url(../img/pathfinding.png) no-repeat;
+    background-size: var(--size-Image-project);
+    background-position: center;
+}
+
+.BasicScript::after{
+    background: url(../img/basicScript.png) no-repeat;
+    background-size: var(--size-Image-project);
+    background-position: center;
+}
 
 
 @media (max-width: 1110px){

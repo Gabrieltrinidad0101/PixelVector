@@ -15,10 +15,12 @@ import '../img/webpack.png'
 import '../img/Babel.png'
 import '../img/Git.png'
 import '../img/myImage.png'
+import '../img/pathfinding.png'
 
 const loader = document.querySelector(".loader");
 const menu = document.querySelector(".menuIcon")
 const containerLinks = document.querySelector(".containerLinks")
+const links = document.querySelectorAll(".linkMenu")
 
 /* loader */
 window.addEventListener("DOMContentLoaded",()=>{
@@ -30,4 +32,9 @@ window.addEventListener("DOMContentLoaded",()=>{
 
 menu.addEventListener("click",_=>{
     containerLinks.classList.toggle("activeMenu")
+})
+
+
+links.forEach(link=>{
+    link.href = `${window.location.href}#${link.textContent}`
 })
