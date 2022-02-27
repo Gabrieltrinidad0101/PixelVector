@@ -7,10 +7,11 @@ class ConatinerLayers{
 
     add(type,name){
         const newLayer = new Layer(type)
-        return this.layers.set(name,newLayer)
+        this.layers.set(name,newLayer)
+        return newLayer
     }
 
-    get get(name){
+    get(name){
         return this.layers.get(name)
     }
 

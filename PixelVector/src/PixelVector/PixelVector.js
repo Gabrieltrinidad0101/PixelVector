@@ -7,7 +7,6 @@ class PixelVector{
         this.#mainCanvas = document.getElementById(canvasId)
         this.#mainCtx = this.#mainCanvas.getContext("2d")
         this.#layers = new ConatinerLayers()
-        this.#render()
     }
 
     createLayer({type,name}){
@@ -15,10 +14,21 @@ class PixelVector{
         return newLayer
     }
 
-    #render(){
-
+    #paint(layer){
+        layer.update()
+        const {canvas} = layer
+        this.#mainCtx.drawImage(canvas,0,0)
     }
 
+    render(fps=100){
+        const loop = setInterval(_=>{
+            this.#mainCtx.clearRect(0,0,this.#mainCanvas.width,this.#mainCanvas.height)
+            this.#layers.forEach(layer=>{
+                if(layer.type === "pixel") return
+                this.#paint(layer)
+            })
+        },fps)
+    }
 }
 
 export default PixelVector
