@@ -2,6 +2,7 @@ import Rect from "../shape/rect/rect"
 class Layer{
     constructor(type){
         this.type = type
+        this.render = true
         this.createCanvas()
     }
 
@@ -16,6 +17,11 @@ class Layer{
         this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)
         this.rect.render()
     }
+
+    easeLinear (p) {
+        return p
+    }
+
 
 }
 

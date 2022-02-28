@@ -1,4 +1,5 @@
 import ConatinerLayers from "./conatinerLayers/conatinerLayers"
+import GlobalVariables from "../globalVarible/globalVariable"
 class PixelVector{
     #mainCanvas = null
     #mainCtx = null
@@ -7,6 +8,9 @@ class PixelVector{
         this.#mainCanvas = document.getElementById(canvasId)
         this.#mainCtx = this.#mainCanvas.getContext("2d")
         this.#layers = new ConatinerLayers()
+        this.globalVariables = new GlobalVariables()
+        const offset = {offsetX: this.#mainCanvas.offsetLeft,offsetY: this.#mainCanvas.offsetTop}
+        this.globalVariables.set("canvasOffset",offset)
     }
 
     createLayer({type,name}){
@@ -24,7 +28,6 @@ class PixelVector{
         const loop = setInterval(_=>{
             this.#mainCtx.clearRect(0,0,this.#mainCanvas.width,this.#mainCanvas.height)
             this.#layers.forEach(layer=>{
-                if(layer.type === "pixel") return
                 this.#paint(layer)
             })
         },fps)
