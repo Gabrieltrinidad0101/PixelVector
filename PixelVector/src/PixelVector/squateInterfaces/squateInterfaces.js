@@ -7,19 +7,28 @@ class SquareInterfaces{
         this.globalVariables = new GlobalVariables()
     }
 
-    postion(x,y){
+    position(x,y){
         this.button.style.left = px(x)
         this.button.style.top = px(y)
     }
-    
+
+    addPosition(x,y){
+        const position = this.button.getBoundingClientRect() 
+        this.button.style.left = `${position.x + x}px`
+        this.button.style.top = `${position.y + y}px`
+    } 
+
     create({x,y,width,height}){
         this.button = document.createElement("div")
         const {interfacesX,interfacesY} = removeOffsetCanvasPosition(x,y)
         this.button.className = "btnSquareInterfaces"
-        this.postion(interfacesX,interfacesY)
+        this.position(interfacesX,interfacesY)
         this.button.style.width = px(width)
         this.button.style.height = px(height)
         this.body.appendChild(this.button)
+        this.button.addEventListener("mousedown",_=>{
+            console.log("ok")
+        })
         this.isMouseDown = false
     }
 
@@ -34,30 +43,42 @@ class SquareInterfaces{
     }
 
     click(cb){
-        const rect1 = this.button.getBoundingClientRect()
         window.addEventListener("mousedown",e=>{
-            this.isMouseDown = true
+            const rect1 = this.button.getBoundingClientRect()
             if(this.collision(rect1,e)){
                 cb(e)
             }
         })
     }
 
-    up(){
+    up(cb){
         window.addEventListener("mouseup",e=>{
-            this.isMouseDown = false
+            cb()
         })
     }
 
-    press(cb){
+    move(cb){
         const rect1 = this.button.getBoundingClientRect()
         window.addEventListener("mousemove",e=>{
-            console.log(this.isMouseDown)
-            if(this.isMouseDown && this.collision(rect1,e)){
-                console.log("oks")
+            if(this.collision(rect1,e)){
                 cb(e)
             }
         })
+
+    }
+
+    press(cb){
+        //this.click(_=>{
+        //    this.isMouseDown =  true
+        //    console.log(this.isMouseDown)
+        //    window.addEventListener("mousemove",e=>{
+        //        const rect1 = this.button.getBoundingClientRect()
+        //        if(this.isMouseDown && this.collision(rect1,e)){
+        //            cb(e)
+        //        }
+        //    })
+        //})
+        //this.up(_=> this.isMouseDown = false)
     }
 }
 
