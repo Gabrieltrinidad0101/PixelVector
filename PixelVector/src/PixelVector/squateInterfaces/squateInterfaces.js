@@ -32,53 +32,35 @@ class SquareInterfaces{
         this.isMouseDown = false
     }
 
-    collision(rect1,e){
-        const rect2 = {x: e.clientX,y: e.clientY,width: 0,height: 0}
-        if (rect1.x < rect2.x + rect2.width &&
-            rect1.x + rect1.width > rect2.x &&
-            rect1.y < rect2.y + rect2.height &&
-            rect1.height + rect1.y > rect2.y){
-                return true
-        }
+    #eventBase(event,cb){
+        this.button.addEventListener(event,e=>{
+            cb(e)
+        })
     }
 
     click(cb){
-        window.addEventListener("mousedown",e=>{
-            const rect1 = this.button.getBoundingClientRect()
-            if(this.collision(rect1,e)){
-                cb(e)
-            }
-        })
+        this.#eventBase("mousedown",cb)
     }
 
     up(cb){
-        window.addEventListener("mouseup",e=>{
-            cb()
-        })
+        this.#eventBase("mouseup",cb)
+    }
+
+    out(cb){
+        this.#eventBase("mouseout",cb)
     }
 
     move(cb){
-        const rect1 = this.button.getBoundingClientRect()
-        window.addEventListener("mousemove",e=>{
-            if(this.collision(rect1,e)){
-                cb(e)
-            }
-        })
-
+        this.#eventBase("mousemove",cb)
     }
 
     press(cb){
-        //this.click(_=>{
-        //    this.isMouseDown =  true
-        //    console.log(this.isMouseDown)
-        //    window.addEventListener("mousemove",e=>{
-        //        const rect1 = this.button.getBoundingClientRect()
-        //        if(this.isMouseDown && this.collision(rect1,e)){
-        //            cb(e)
-        //        }
-        //    })
-        //})
-        //this.up(_=> this.isMouseDown = false)
+        this.click(_=>this.isMouseDown= true)
+        this.up(_=>this.isMouseDown= false)
+        this.out(_=>this.isMouseDown= false)
+        this.move(e=>{
+            if(this.isMouseDown) cb(e)
+        })
     }
 }
 

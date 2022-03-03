@@ -1,5 +1,4 @@
 .btnSquareInterfaces{
-    pointer-events: none;
     position: fixed;
     border: 1px solid red;
 }
