@@ -8,7 +8,7 @@ const rect1 = layer1.rect.create({x: 40,y: 50,width: 50,height: 50})
 const rect2 = layer1.rect.create({x: 60,y: 70,width: 50,height: 50})
 
 
-canvas.render(10)
+canvas.render(100)
 
 
 

@@ -2,9 +2,9 @@ const globalVariableString = localStorage.getItem("globalVariables")
 const globalVariables = globalVariableString ? JSON.parse(globalVariableString) : {}
 
 class GlobalVariables{
-    set(name,value){
+    set(name,value,save=true){
         globalVariables[name] = value
-        localStorage.setItem("globalVariables", JSON.stringify(globalVariables))
+        save ?? localStorage.setItem("globalVariables", JSON.stringify(globalVariables))
     }
 
     get(name){

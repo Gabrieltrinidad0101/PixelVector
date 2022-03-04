@@ -12,6 +12,16 @@ class SquareInterfaces{
         this.button.style.top = px(y)
     }
 
+    collision(rect1,e){
+        const rect2 = {x: e.clientX,y: e.clientY,width: 0,height: 0}
+        if (rect1.x < rect2.x + rect2.width &&
+            rect1.x + rect1.width > rect2.x &&
+            rect1.y < rect2.y + rect2.height &&
+            rect1.height + rect1.y > rect2.y){
+            return true
+        }
+    }
+
     addPosition(x,y){
         const position = this.button.getBoundingClientRect() 
         this.button.style.left = `${position.x + x}px`
@@ -26,15 +36,22 @@ class SquareInterfaces{
         this.button.style.width = px(width)
         this.button.style.height = px(height)
         this.body.appendChild(this.button)
-        this.button.addEventListener("mousedown",_=>{
-            console.log("ok")
-        })
         this.isMouseDown = false
     }
 
     #eventBase(event,cb){
         this.button.addEventListener(event,e=>{
             cb(e)
+        })
+    }
+
+    #eventBaseCanvas(event,cb,typeCollision){
+        const canvas = this.globalVariables.get("mainCanvas")
+        window.addEventListener(event,e=>{
+            const rect1 = canvas.getBoundingClientRect()
+            if(this.collision(rect1,e) === typeCollision){
+                cb(e)
+            }
         })
     }
 
@@ -47,17 +64,33 @@ class SquareInterfaces{
     }
 
     out(cb){
-        this.#eventBase("mouseout",cb)
+        this.#eventBaseCanvas("mouseout",cb,false)
     }
 
     move(cb){
-        this.#eventBase("mousemove",cb)
+        window.addEventListener("mousemove",e=>{
+            const rect1 = this.button.getBoundingClientRect()
+            if(this.collision(rect1,e)){
+                cb(e)
+            }
+        })
     }
 
     press(cb){
-        this.click(_=>this.isMouseDown= true)
-        this.up(_=>this.isMouseDown= false)
-        this.out(_=>this.isMouseDown= false)
+        this.click(_=>{
+            this.isMouseDown= true
+            this.button.style.zIndex = 100
+        })
+        this.up(_=>{
+            console.log("okkkk")
+            this.isMouseDown= false
+            this.button.style.zIndex = 1
+        })
+        this.out(_=>{
+            console.log("okkkk")
+            this.isMouseDown= false
+            this.button.style.zIndex = 1
+        })
         this.move(e=>{
             if(this.isMouseDown) cb(e)
         })

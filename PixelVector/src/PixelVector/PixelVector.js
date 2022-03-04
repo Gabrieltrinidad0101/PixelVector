@@ -7,10 +7,24 @@ class PixelVector{
     constructor(canvasId){
         this.#mainCanvas = document.getElementById(canvasId)
         this.#mainCtx = this.#mainCanvas.getContext("2d")
-        this.#layers = new ConatinerLayers()
         this.globalVariables = new GlobalVariables()
+        this.setDimensions(500,500)
+        this.saveCanvasAndCtxTemporal(this.#mainCanvas,this.#mainCtx)
+        this.#layers = new ConatinerLayers()
         const offset = {offsetX: this.#mainCanvas.offsetLeft,offsetY: this.#mainCanvas.offsetTop}
         this.globalVariables.set("canvasOffset",offset)
+    }
+
+    saveCanvasAndCtxTemporal(canvas,ctx){
+        this.globalVariables.set("mainCanvas",canvas)
+        this.globalVariables.set("mainCtx",ctx)
+
+    }
+
+    setDimensions(width,height){
+        this.#mainCanvas.width = width
+        this.#mainCanvas.height = height
+        this.globalVariables.set("canvasDimensions",{width,height})
     }
 
     createLayer({type,name}){
